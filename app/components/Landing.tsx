@@ -3,7 +3,9 @@
 import { CloudSun, MapPin, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
-export default function LandingPage({data}) {
+export default function LandingPage({data,loading}: {data: any; loading: any}) {
+   if (loading) return <p>Loading...</p>;
+  if (!data) return <p>No data</p>;
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white">
 

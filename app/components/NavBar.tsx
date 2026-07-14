@@ -5,7 +5,7 @@ import { useState } from "react";
 import { CloudSun, Menu, X, Search, MapPin } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function Navbar() {
+export default function Navbar({ city, onSearch }:{ city: string; onSearch: (city: string) => void }) {
   const [open, setOpen] = useState(false);
 
   const navLinks = ["Home", "Forecast", "Radar", "Alerts"];
@@ -42,12 +42,19 @@ export default function Navbar() {
               type="text"
               placeholder="Search city..."
               className="bg-slate-800 border border-slate-700 rounded-xl pl-9 pr-3 py-1.5 text-sm focus:outline-none focus:border-sky-500"
+              onKeyDown={
+                (e)=>{
+                  if(e.key ==="Enter"){
+                    onSearch(e.currentTarget.value)
+                  }
+                }
+              }
             />
           </div>
 
           <div className="flex items-center gap-1 text-sm text-slate-300">
             <MapPin size={16} />
-            <span>London</span>
+            <span>{city}</span>
           </div>
         </div>
 
@@ -78,6 +85,13 @@ export default function Navbar() {
                   type="text"
                   placeholder="Search city..."
                   className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-9 pr-3 py-2 text-sm focus:outline-none focus:border-sky-500"
+                  onKeyDown={
+                    (e)=>{
+                      if(e.key ==="Enter"){
+                        onSearch(e.currentTarget.value)
+                      }
+                    }
+                  }
                 />
               </div>
 
@@ -96,7 +110,7 @@ export default function Navbar() {
               {/* Location */}
               <div className="flex items-center gap-2 text-slate-400 text-sm">
                 <MapPin size={16} />
-                <span>London, UK</span>
+                <span>{city}</span>
               </div>
 
             </div>

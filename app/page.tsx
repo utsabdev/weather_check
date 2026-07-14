@@ -1,4 +1,6 @@
-import LandingPage from "./components/Landing";
+import ClientWrapper from "./components/ClientWrapper";
+
+
 const fetchWeather = async()=>{
   try {
       const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Kathmandu&appid=${process.env.API_KEY}&units=metric`,{
@@ -25,7 +27,8 @@ export default async function Home() {
 
   return (
    <div>
-   <LandingPage data ={WeatherData} />
+    <ClientWrapper initialState={WeatherData}/>
+
    </div>
   );
 }
